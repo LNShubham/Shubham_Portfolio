@@ -1,0 +1,1046 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SHUBHAM SANDEEP LONE - Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <style>
+        /* Global Styles */
+        :root {
+            --primary: #2563eb;
+            --secondary: #1e40af;
+            --dark: #1e293b;
+            --light: #f8fafc;
+            --gray: #64748b;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        section {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            font-size: 2.5rem;
+            color: var(--primary);
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--primary);
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 28px;
+            background-color: var(--primary);
+            color: white;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background-color: var(--secondary);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Header Styles */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            position: relative; /* Needed for positioning the mobile menu */
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        
+        .logo span {
+            color: var(--secondary);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 30px;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .hamburger {
+            display: none;
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: var(--dark);
+        }
+        
+        /* Hero Section */
+        .hero {
+            padding-top: 150px;
+            padding-bottom: 80px;
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            text-align: center;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .hero-img {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid white;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 15px;
+            color: var(--dark);
+        }
+        
+        .hero h2 {
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--gray);
+            margin-bottom: 30px;
+        }
+        
+        .hero-btns {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        
+        /* About Section */
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+        
+        .about-text {
+            flex: 1;
+        }
+        
+        .about-text h3 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+        
+        .about-text p {
+            margin-bottom: 15px;
+            color: var(--gray);
+        }
+        
+        .about-info {
+            flex: 1;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+        
+        .info-item {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            text-align: center;
+        }
+        
+        .info-item i {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+        
+        /* Skills Section */
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .skill-category {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .skill-category h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: var(--primary);
+            text-align: center;
+        }
+        
+        .skill-items {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        .skill-item {
+            background-color: #f1f5f9;
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-weight: 500;
+            color: var(--dark);
+        }
+        
+        /* Resume Section */
+        .resume-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            gap: 40px;
+        }
+        
+        .resume-item {
+            margin-bottom: 30px;
+        }
+        
+        .resume-item h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+        
+        .resume-item .date {
+            color: var(--gray);
+            margin-bottom: 10px;
+            font-style: italic;
+        }
+        
+        .resume-item p {
+            color: var(--gray);
+            margin-bottom: 10px;
+        }
+        
+        .resume-item ul {
+            padding-left: 20px;
+        }
+        
+        .resume-item li {
+            margin-bottom: 8px;
+            color: var(--gray);
+        }
+        
+        /* Projects Section */
+        .projects-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+        
+        .project-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .project-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .project-content {
+            padding: 20px;
+        }
+        
+        .project-content h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: var(--dark);
+        }
+        
+        .project-content p {
+            color: var(--gray);
+            margin-bottom: 15px;
+        }
+        
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        
+        .project-tech span {
+            background-color: #f1f5f9;
+            padding: 5px 12px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            color: var(--dark);
+        }
+        
+        .project-links {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .project-links a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        /* Certifications Section */
+        .certifications-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .certification-item {
+            background-color: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .certification-item h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: var(--dark);
+        }
+        
+        .certification-item .date {
+            color: var(--gray);
+            margin-bottom: 10px;
+            font-style: italic;
+        }
+        
+        .certification-item p {
+            color: var(--gray);
+            margin-bottom: 15px;
+        }
+        
+        /* Achievements Section */
+        .achievements-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .achievement-item {
+            background-color: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            text-align: center;
+        }
+        
+        .achievement-item h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: var(--dark);
+        }
+        
+        .achievement-item .date {
+            color: var(--gray);
+            margin-bottom: 10px;
+            font-style: italic;
+        }
+        
+        /* Contact Section */
+        .contact-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 50px;
+        }
+        
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .contact-item i {
+            width: 50px;
+            height: 50px;
+            background-color: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+        
+        .contact-item div {
+            color: var(--gray);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            background-color: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--secondary);
+            transform: translateY(-3px);
+        }
+        
+        .contact-form {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .contact-form h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--dark);
+            font-weight: 500;
+        }
+        
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            color: var(--dark);
+        }
+        
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        /* Form Status Messages */
+        .form-status {
+            margin-top: 15px;
+            padding: 10px;
+            border-radius: 5px;
+            text-align: center;
+            display: none;
+        }
+        
+        .form-status.success {
+            background-color: #d4edda;
+            color: #155724;
+            display: block;
+        }
+        
+        .form-status.error {
+            background-color: #f8d7da;
+            color: #721c24;
+            display: block;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+        
+        .footer-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+        
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hamburger {
+                display: block;
+            }
+
+            .nav-links {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                background: var(--light);
+                width: 100%;
+                flex-direction: column;
+                align-items: center;
+                box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.4s ease-in-out;
+            }
+
+            .nav-links.active {
+                max-height: 400px; /* Adjust height as needed */
+                padding: 20px 0;
+            }
+            
+            .nav-links li {
+                margin: 10px 0;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero h2 {
+                font-size: 1.5rem;
+            }
+            
+            .about-content {
+                flex-direction: column;
+            }
+            
+            .resume-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero-btns {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">Shubham<span></span> Lone</span></div>
+                <ul class="nav-links">
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#resume">Resume</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#certifications">Certifications</a></li>
+                    <li><a href="#achievements">Achievements</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+                <div class="hamburger">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <img src="https://i.postimg.cc/hGqvPzc1/Shubham-Linkedin-Photo.jpg" alt="SHUBHAM SANDEEP LONE" class="hero-img">
+                <h1>SHUBHAM SANDEEP LONE</h1>
+                <h2>FULL-STACK PYTHON DEVELOPER, DATA ANALYST</h2>
+                <p>Computer Engineer with hands-on experience in building scalable full-stack applications using Python and Flask. Finalist of Smart India Hackathon 2024 and Logithon(2023) by SoftLink Global.</p>
+                <div class="hero-btns">
+                    <a href="#contact" class="btn">Get In Touch</a>
+                    <a href="https://drive.google.com/file/d/1nDoIHtXFkCohKdXYOmY1ZvqkxL0Cx0af/view?usp=drive_link" class="btn" target="_blank">Download CV</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>My Journey</h3>
+                    <p>I am a passionate computer engineer with expertise in full-stack development using Python and Flask. My journey in technology began with a curiosity about how software applications work, which evolved into a passion for creating scalable and efficient solutions.</p>
+                    <p>With hands-on experience in both frontend and backend development, I enjoy turning complex problems into simple, intuitive solutions. My interest in data science and machine learning allows me to bring additional value to projects through data-driven insights.</p>
+                    <p>When I'm not coding, you can find me exploring new technologies, contributing to open-source projects, or expanding my knowledge in data analytics and AI.</p>
+                </div>
+                <div class="about-info">
+                    <div class="info-item">
+                        <i class="fas fa-graduation-cap"></i>
+                        <h4>Computer Engineer</h4>
+                        <p>B.E. in Computer Engineering</p>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-briefcase"></i>
+                        <h4>Full-Stack Developer</h4>
+                        <p>Python, Flask, React</p>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-chart-line"></i>
+                        <h4>Data Analyst</h4>
+                        <p>Python, SQL, Visualization</p>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" class="skills">
+        <div class="container">
+            <h2 class="section-title">My Skills</h2>
+            <div class="skills-container">
+                <div class="skill-category">
+                    <h3>Programming Languages</h3>
+                    <div class="skill-items">
+                        <div class="skill-item">Python</div>
+                        <div class="skill-item">C++</div>
+                        <div class="skill-item">JavaScript</div>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>Frameworks & Libraries</h3>
+                    <div class="skill-items">
+                        <div class="skill-item">Pandas</div>
+                        <div class="skill-item">NumPy</div>
+                        <div class="skill-item">Matplotlib</div>
+                        <div class="skill-item">Scikit-Learn</div>
+                        <div class="skill-item">Machine Learning</div>
+                        <div class="skill-item">NLP</div>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>Backend & APIs</h3>
+                    <div class="skill-items">
+                        <div class="skill-item">RESTFUL APIs</div>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>Frontend & UI</h3>
+                    <div class="skill-items">
+                        <div class="skill-item">HTML</div>
+                        <div class="skill-item">CSS</div>
+                        <div class="skill-item">Bootstrap</div>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>Databases & Cloud</h3>
+                    <div class="skill-items">
+                        <div class="skill-item">MySQL</div>
+                        <div class="skill-item">MongoDB</div>
+                        <div class="skill-item">Firebase</div>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>Tools & Deployment</h3>
+                    <div class="skill-items">
+                        <div class="skill-item">Jupyter Notebook</div>
+                        <div class="skill-item">PowerBI</div>
+                        <div class="skill-item">GitHub</div>
+                        <div class="skill-item">Vercel</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="resume" class="resume">
+        <div class="container">
+            <h2 class="section-title">My Resume</h2>
+            <div class="resume-container">
+                <div>
+                    <h3>Education</h3>
+                    <div class="resume-item">
+                        <h4>Bachelor of Engineering in Computer Engineering</h4>
+                        <p class="date">2022 - 2026</p>
+                        <p>Datta Meghe College Of Engineering, Airoli</p>
+                    </div>
+                    <div class="resume-item">
+                        <h4>Higher Secondary Education</h4>
+                        <p class="date">2020 - 2022</p>
+                        <p>B.K.Birla College, Science, Commerce and Arts, Kalyan(W)</p>
+                    </div>
+                    
+                    <h3>Work Experience</h3>
+                    <div class="resume-item">
+                        <h4>Python Intern</h4>
+                        <p class="date">Jan 2024 - Feb 2024</p>
+                        <p>Mira Advanced Engineering</p>
+                        <ul>
+                            <li>Integrated SQLite and OpenWeatherMap APIs to enrich backend workflows</li>
+                            <li>Remote collaborations for developing practical Python applications</li>
+                        </ul>
+                    </div>
+                </div>
+                <div>
+                    <h3>Certifications</h3>
+                    <div class="resume-item">
+                        <h4>Python Certification</h4>
+                        <p class="date">2023</p>
+                        <p>Kamal Classes</p>
+                    </div>
+                    <div class="resume-item">
+                        <h4>MySQL Certification</h4>
+                        <p class="date">2023</p>
+                        <p>Kamal Classes</p>
+                    </div>
+                    <div class="resume-item">
+                        <h4>Django Certification</h4>
+                        <p class="date">2024</p>
+                        <p>Kamal Classes</p>
+                    </div>
+                    <div class="resume-item">
+                        <h4>Machine Learning Certification</h4>
+                        <p class="date">2024</p>
+                        <p>Kamal Classes</p>
+                    </div>
+                    <div class="resume-item">
+                        <h4>Natural Language Processing Certification</h4>
+                        <p class="date">2024</p>
+                        <p>Kamal Classes</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="projects">
+        <div class="container">
+            <h2 class="section-title">My Projects</h2>
+            <div class="projects-container">
+                <div class="project-card">
+                    <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="VaniUpchar" class="project-img">
+                    <div class="project-content">
+                        <h3>VaniUpchar — ML-Powered Voice Disorder Detection</h3>
+                        <p>ML-based Voice Disorder Predictor that analyzes symptoms, predicts potential disorders, and generates reports with doctor appointment booking.</p>
+                        <div class="project-tech">
+                            <span>Flask</span>
+                            <span>Python</span>
+                            <span>Machine Learning</span>
+                            <span>MySQL</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/LNShubham/Voice_disorder_predictor"><i class="fab fa-github"></i> GitHub</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Visitor Management System" class="project-img">
+                    <div class="project-content">
+                        <h3>Visitor Management System</h3>
+                        <p>Desktop application for tracking visitor data at public locations with practical use for gatekeeping services.</p>
+                        <div class="project-tech">
+                            <span>Python</span>
+                            <span>MySQL</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/LNShubham/Visitor-Management-System"><i class="fab fa-github"></i> GitHub</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="certifications" class="certifications">
+        <div class="container">
+            <h2 class="section-title">My Certifications</h2>
+            <div class="certifications-container">
+                <div class="certification-item">
+                    <h3>Python Certification</h3>
+                    <p class="date">2023 - Kamal Classes</p>
+                    <a href="https://drive.google.com/file/d/1097Ylqs6LHLaAtDdNNVdsPayY9CWi_Z0/view?usp=drive_link" class="btn">View Certificate</a>
+                </div>
+                <div class="certification-item">
+                    <h3>MySQL Certification</h3>
+                    <p class="date">2023 - Kamal Classes</p>
+                    <a href="https://drive.google.com/file/d/16c_gzyPlir6dfinc-LPSsH2q85jhLDwt/view?usp=drive_link" class="btn">View Certificate</a>
+                </div>
+                <div class="certification-item">
+                    <h3>Django Certification</h3>
+                    <p class="date">2024 - Kamal Classes</p>
+                    <a href="https://drive.google.com/file/d/1X3hzGW7I04QuJ4aKcasMAAnVGVlOHpVg/view?usp=drive_link" class="btn">View Certificate</a>
+                </div>
+                <div class="certification-item">
+                    <h3>Machine Learning Certification</h3>
+                    <p class="date">2024 - Kamal Classes</p>
+                    <a href="https://drive.google.com/file/d/1IWWuI5Xl80tMrl0pKgudLdrsRHJRCsTe/view?usp=drive_link" class="btn">View Certificate</a>
+                </div>
+                <div class="certification-item">
+                    <h3>Natural Language Processing Certification</h3>
+                    <p class="date">2024 - Kamal Classes</p>
+                    <a href="https://drive.google.com/file/d/1Lr9QarZwh9-8cEWnc1_Avby-I14Jn_Q7/view?usp=drive_link" class="btn">View Certificate</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="achievements" class="achievements">
+        <div class="container">
+            <h2 class="section-title">My Achievements</h2>
+            <div class="achievements-container">
+                <div class="achievement-item">
+                    <i class="fas fa-trophy"></i>
+                    <h3>Smart India Hackathon Finalist</h3>
+                    <p class="date">2024</p>
+                    <a href="https://drive.google.com/file/d/17elYtd77s12B8NUy7_VkjdWwcFkH47cr/view?usp=drive_link" class="btn">View Certificate</a>
+                </div>
+                <div class="achievement-item">
+                    <i class="fas fa-award"></i>
+                    <h3>Logithon Finalist</h3>
+                    <p class="date">2024</p>
+                    <a href="https://drive.google.com/file/d/1K9PX25YtoikEpZE_fdI7ZHGnGPTh_JXR/view?usp=drive_link" class="btn">View Certificate</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title">Get In Touch</h2>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h3>Let's talk about your project!</h3>
+                    <p>I'm available for freelance work and full-time opportunities. Feel free to reach out and I'll respond as soon as possible.</p>
+                    
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <h4>Email</h4>
+                            <p>lone.shubham.co109@gmail.com</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <h4>Phone</h4>
+                            <p>+91 9136570551</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <h4>Location</h4>
+                            <p>311,3rd Floor, Girnar F-4, Golden Park, Phase-2, Khadakpada, Kalyan (W)-421301</p>
+                        </div>
+                    </div>
+                    
+                    <div class="social-links">
+                        <a href="https://www.linkedin.com/in/shubham-lone-7b12a9265/"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://github.com/LNShubham"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+                
+                <div class="contact-form">
+                    <h3>Send Me a Message</h3>
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="name">Your Name</label>
+                            <input type="text" id="name" name="from_name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Your Email</label>
+                            <input type="email" id="email" name="from_email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">Subject</label>
+                            <input type="text" id="subject" name="subject" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Your Message</label>
+                            <textarea id="message" name="message" required></textarea>
+                        </div>
+                        <div id="formStatus" class="form-status"></div>
+                        <button type="submit" class="btn">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="logo">Shubham<span>Lone</span></div>
+                <p>Full-Stack Python Developer & Data Analyst</p>
+                <ul class="footer-links">
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#resume">Resume</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#certifications">Certifications</a></li>
+                    <li><a href="#achievements">Achievements</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+                <p>&copy; 2024 Shubham Sandeep Lone. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+
+            hamburger.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+            });
+
+            // Optional: Close menu when a link is clicked
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.addEventListener('click', () => {
+                    if (navLinks.classList.contains('active')) {
+                        navLinks.classList.remove('active');
+                    }
+                });
+            });
+
+            // Initialize EmailJS
+            emailjs.init("JnM_CxCgPZCIPwVfm"); // Replace with your actual public key
+
+            // Contact form submission
+            const contactForm = document.getElementById('contactForm');
+            const formStatus = document.getElementById('formStatus');
+            
+            contactForm.addEventListener('submit', function(event) {
+                event.preventDefault();
+                
+                // Show loading state
+                const submitBtn = this.querySelector('button[type="submit"]');
+                submitBtn.textContent = 'Sending...';
+                submitBtn.disabled = true;
+                formStatus.style.display = 'none';
+                
+                // Send the email using EmailJS
+                emailjs.sendForm('service_ww60hkp', 'template_ndox5ip', this)
+                    .then(function() {
+                        formStatus.textContent = 'Message sent successfully!';
+                        formStatus.className = 'form-status success';
+                        contactForm.reset();
+                    }, function(error) {
+                        formStatus.textContent = 'Failed to send message. Please try again later.';
+                        formStatus.className = 'form-status error';
+                        console.error('EmailJS error:', error);
+                    })
+                    .finally(function() {
+                        submitBtn.textContent = 'Send Message';
+                        submitBtn.disabled = false;
+                        formStatus.style.display = 'block';
+                    });
+            });
+        });
+    </script>
+</body>
+</html>
